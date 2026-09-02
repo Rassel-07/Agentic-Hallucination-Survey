@@ -83,8 +83,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
   if (!summaryData) {
     return (
       <div className="glass-panel" style={{ textAlign: 'center', padding: '50px 20px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-        <AlertTriangle size={36} color="#EF4444" style={{ marginBottom: 14 }} />
-        <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>Google Colab Backend Offline</h3>
+        <AlertTriangle size={36} color="var(--fail-red)" style={{ marginBottom: 14 }} />
+        <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>Colab backend offline</h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '560px', margin: '0 auto 20px', lineHeight: 1.6 }}>
           {error || 'Unable to retrieve benchmark evaluation data from Google Colab. Please confirm that your Colab FastAPI server and Cloudflare tunnel are active, then click retry.'}
         </p>

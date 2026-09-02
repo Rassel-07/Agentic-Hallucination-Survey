@@ -124,3 +124,30 @@ export interface AblationResultsResponse {
   configurations: AblationConfig[];
 }
 
+export interface GraphFact {
+  subject: string;
+  predicate: string;
+  object: string;
+}
+
+export interface GraphResponse {
+  success: boolean;
+  count?: number;
+  facts: (GraphFact | string)[];
+}
+
+export interface HotelAdrStats {
+  mean: number;
+  min: number;
+  max: number;
+}
+
+export interface DatasetStatsResponse {
+  success: boolean;
+  total_rows: number;
+  hotel_distribution: Record<string, number>;
+  cancellation_rates: Record<string, number>;
+  adr_statistics: Record<string, HotelAdrStats>;
+  sample_records?: any[];
+}
+

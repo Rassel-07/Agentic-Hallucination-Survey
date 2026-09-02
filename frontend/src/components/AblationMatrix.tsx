@@ -12,21 +12,48 @@ interface AblationMatrixProps {
 export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
   const [data, setData] = useState<AblationConfig[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await getAblationResults();
+      if (res?.configurations && res.configurations.length > 0) {
+        setData(res.configurations);
+      } else {
+        setError('Colab backend offline');
+      }
+    } catch (err: any) {
+      console.error('Failed to load ablation results:', err);
+      setError('Colab backend offline');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const res = await getAblationResults();
-        if (res?.configurations) setData(res.configurations);
-      } catch (err) {
-        console.error('Failed to load ablation results:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, []);
+  }, [isConnected]);
+
+  if (!loading && data.length === 0) {
+    return (
+      <div className="glass-panel fade-in" style={{ textAlign: 'center', padding: '50px 20px', border: '1px solid var(--fail-border)' }}>
+        <Layers size={36} color="var(--fail-red)" style={{ marginBottom: 14 }} />
+        <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>Colab backend offline</h3>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '560px', margin: '0 auto 20px', lineHeight: 1.6 }}>
+          {error || 'Unable to retrieve ablation configurations from Google Colab. Please confirm that your Colab FastAPI server and Cloudflare tunnel are active, then click retry.'}
+        </p>
+        <button 
+          className="btn-primary" 
+          onClick={fetchData}
+          style={{ margin: '0 auto', display: 'inline-flex', alignItems: 'center', gap: 8 }}
+        >
+          <span>Retry Colab Connection</span>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="fade-in">
@@ -34,7 +61,7 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
         <div className="panel-header">
           <div className="panel-title">
             <Layers size={22} color="var(--accent-primary)" />
-            <span>Component-Wise Ablation Study (6 Research Configurations)</span>
+            <span>Component-Wise Ablation Study ({data.length} Research Configurations)</span>
           </div>
         </div>
 

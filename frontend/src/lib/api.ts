@@ -4,7 +4,9 @@ import {
   EvaluationSummary, 
   CategorySummary, 
   EvaluationItem, 
-  AblationConfig 
+  AblationConfig,
+  GraphResponse,
+  DatasetStatsResponse
 } from '@/types';
 
 // The frontend communicates with the external Google Colab FastAPI server
@@ -158,9 +160,13 @@ export async function getEvaluationSummary(): Promise<{ summary: EvaluationSumma
     const res = await fetch(`${baseUrl}/evaluation-summary`, {
       headers: { 'Accept': 'application/json' },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (IS_DEV) console.error(`[API Error] GET /evaluation-summary returned HTTP ${res.status}`);
+      return null;
+    }
     return await res.json();
-  } catch {
+  } catch (err: any) {
+    if (IS_DEV) console.error('[API Error] Failed to fetch /evaluation-summary:', err?.message || err);
     return null;
   }
 }
@@ -174,7 +180,10 @@ export async function getCategoryResults(): Promise<{ categories: CategorySummar
     const res = await fetch(`${baseUrl}/category-results`, {
       headers: { 'Accept': 'application/json' },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (IS_DEV) console.error(`[API Error] GET /category-results returned HTTP ${res.status}`);
+      return null;
+    }
     const data = await res.json();
     if (data?.categories && Array.isArray(data.categories)) {
       data.categories = data.categories.map((c: any) => ({
@@ -184,7 +193,8 @@ export async function getCategoryResults(): Promise<{ categories: CategorySummar
       }));
     }
     return data;
-  } catch {
+  } catch (err: any) {
+    if (IS_DEV) console.error('[API Error] Failed to fetch /category-results:', err?.message || err);
     return null;
   }
 }
@@ -198,7 +208,10 @@ export async function getAblationResults(): Promise<{ configurations: AblationCo
     const res = await fetch(`${baseUrl}/ablation-results`, {
       headers: { 'Accept': 'application/json' },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (IS_DEV) console.error(`[API Error] GET /ablation-results returned HTTP ${res.status}`);
+      return null;
+    }
     const data = await res.json();
     if (data?.configurations && Array.isArray(data.configurations)) {
       const descriptions: Record<string, string> = {
@@ -220,13 +233,14 @@ export async function getAblationResults(): Promise<{ configurations: AblationCo
       });
     }
     return data;
-  } catch {
+  } catch (err: any) {
+    if (IS_DEV) console.error('[API Error] Failed to fetch /ablation-results:', err?.message || err);
     return null;
   }
 }
 
 // 6. GET ${NEXT_PUBLIC_API_URL}/dataset/stats
-export async function getDatasetStats(): Promise<any | null> {
+export async function getDatasetStats(): Promise<DatasetStatsResponse | null> {
   const baseUrl = getBackendUrl();
   if (!baseUrl) return null;
 
@@ -234,15 +248,19 @@ export async function getDatasetStats(): Promise<any | null> {
     const res = await fetch(`${baseUrl}/dataset/stats`, {
       headers: { 'Accept': 'application/json' },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (IS_DEV) console.error(`[API Error] GET /dataset/stats returned HTTP ${res.status}`);
+      return null;
+    }
     return await res.json();
-  } catch {
+  } catch (err: any) {
+    if (IS_DEV) console.error('[API Error] Failed to fetch /dataset/stats:', err?.message || err);
     return null;
   }
 }
 
 // 7. GET ${NEXT_PUBLIC_API_URL}/graph
-export async function getKnowledgeGraph(): Promise<any | null> {
+export async function getKnowledgeGraph(): Promise<GraphResponse | null> {
   const baseUrl = getBackendUrl();
   if (!baseUrl) return null;
 
@@ -250,9 +268,20 @@ export async function getKnowledgeGraph(): Promise<any | null> {
     const res = await fetch(`${baseUrl}/graph`, {
       headers: { 'Accept': 'application/json' },
     });
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
+    if (!res.ok) {
+      if (IS_DEV) console.error(`[API Error] GET /graph returned HTTP ${res.status}`);
+      return null;
+    }
+    const data = await res.json();
+    const rawFacts = data?.facts || data?.data?.facts || [];
+    const count = data?.count ?? data?.total_facts ?? rawFacts.length;
+    return {
+      success: Boolean(data?.success ?? true),
+      count,
+      facts: rawFacts,
+    };
+  } catch (err: any) {
+    if (IS_DEV) console.error('[API Error] Failed to fetch /graph:', err?.message || err);
     return null;
   }
 }
