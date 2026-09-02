@@ -72,7 +72,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
     return (
       <div className="glass-panel" style={{ textAlign: 'center', padding: '60px 20px' }}>
         <RefreshCw size={32} className="spinner" color="var(--cyan-bright)" style={{ marginBottom: 16 }} />
-        <h3 style={{ color: '#fff', marginBottom: 8 }}>Loading Real Colab Evaluation Data...</h3>
+        <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>Loading Real Colab Evaluation Data...</h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
           Querying /evaluation-summary, /category-results, and /ablation-results from your active Google Colab API.
         </p>
@@ -84,7 +84,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
     return (
       <div className="glass-panel" style={{ textAlign: 'center', padding: '50px 20px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
         <AlertTriangle size={36} color="#EF4444" style={{ marginBottom: 14 }} />
-        <h3 style={{ color: '#fff', marginBottom: 8 }}>Google Colab Backend Offline</h3>
+        <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>Google Colab Backend Offline</h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '560px', margin: '0 auto 20px', lineHeight: 1.6 }}>
           {error || 'Unable to retrieve benchmark evaluation data from Google Colab. Please confirm that your Colab FastAPI server and Cloudflare tunnel are active, then click retry.'}
         </p>
@@ -112,8 +112,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
       {/* SECTION 1: OVERALL PERFORMANCE METRIC CARDS */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 800, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Activity size={24} color="#06B6D4" />
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <Activity size={24} color="var(--accent-primary)" />
             <span>1. Overall Research Performance</span>
           </h2>
           <span className="badge-tag cyan">
@@ -151,7 +151,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <div className="kpi-card" style={{ borderLeft: '4px solid var(--cyan-primary)' }}>
               <div className="kpi-label">
                 <span>HRS Reduction</span>
-                <TrendingDown size={16} color="#06B6D4" />
+                <TrendingDown size={16} color="var(--accent-primary)" />
               </div>
               <div className="kpi-value kpi-highlight-cyan">
                 {summaryData.HRS_reduction_pct.toFixed(2)}%
@@ -363,7 +363,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
       <div className="glass-panel" style={{ marginBottom: 28 }}>
         <div className="panel-header">
           <div className="panel-title">
-            <BarChart3 size={22} color="#06B6D4" />
+            <BarChart3 size={22} color="var(--accent-primary)" />
             <span>4. Category-Wise Results (Grouped Comparative Analysis)</span>
           </div>
           <span className="badge-tag">{categories.length} Research Categories</span>
@@ -376,7 +376,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
           {categories.map((cat) => (
             <div key={cat.category} style={{
-              background: 'rgba(7, 11, 20, 0.8)',
+              background: 'var(--bg-subtle)',
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-md)',
               padding: '18px',
@@ -451,7 +451,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
             {/* Chart: Latency Comparison */}
-            <div style={{ background: 'rgba(7, 11, 20, 0.7)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+            <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
               <div style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
                   <span style={{ color: '#E2E8F0' }}>WITHOUT 5in1 (Parametric Generation)</span>
@@ -491,7 +491,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
       <div className="glass-panel" style={{ marginBottom: 28, border: '1px solid var(--border-glow-cyan)' }}>
         <div className="panel-header">
           <div className="panel-title">
-            <Layers size={22} color="#06B6D4" />
+            <Layers size={22} color="var(--accent-primary)" />
             <span>6. Component-Wise Ablation Study — Why Each 5in1 Layer Matters</span>
           </div>
           <span className="badge-tag cyan">Empirical Layer Contributions</span>
@@ -555,8 +555,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
         {ablationData.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
             {/* Chart: Safe Behavior Impact */}
-            <div style={{ background: 'rgba(7, 11, 20, 0.7)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <CheckCircle2 size={16} color="#10B981" />
                 <span>Safe-Behavior Score Drop (% — Higher is Better)</span>
               </div>
@@ -579,8 +579,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             </div>
 
             {/* Chart: HRS Risk Climb */}
-            <div style={{ background: 'rgba(7, 11, 20, 0.7)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <ArrowDownRight size={16} color="#EF4444" />
                 <span>Hallucination Risk Score Climb (HRS — Lower is Better)</span>
               </div>
@@ -609,7 +609,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
       <div className="glass-panel">
         <div className="panel-header">
           <div className="panel-title">
-            <GitCompare size={22} color="#06B6D4" />
+            <GitCompare size={22} color="var(--accent-primary)" />
             <span>25-Item Benchmark Dataset Verification Suite</span>
           </div>
 
@@ -708,7 +708,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
                 <span className={`chip-cat ${selectedItem.category}`} style={{ marginRight: 8 }}>
                   {selectedItem.category}
                 </span>
-                <strong style={{ fontSize: '1.1rem', color: '#fff' }}>[{selectedItem.id}] {selectedItem.query}</strong>
+                <strong style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>[{selectedItem.id}] {selectedItem.query}</strong>
               </div>
               <button 
                 onClick={() => setSelectedItem(null)}

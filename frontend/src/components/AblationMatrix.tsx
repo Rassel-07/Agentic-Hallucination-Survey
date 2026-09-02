@@ -33,7 +33,7 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
       <div className="glass-panel">
         <div className="panel-header">
           <div className="panel-title">
-            <Layers size={22} color="#06B6D4" />
+            <Layers size={22} color="var(--accent-primary)" />
             <span>Component-Wise Ablation Study (6 Research Configurations)</span>
           </div>
         </div>
@@ -57,15 +57,15 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
               </thead>
               <tbody>
                 {data.map((row, idx) => (
-                  <tr key={idx} style={{ background: idx === 0 ? 'rgba(6, 182, 212, 0.04)' : 'transparent' }}>
-                    <td style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: idx === 0 ? 'var(--cyan-bright)' : '#fff' }}>
-                      {idx === 0 ? '🌟 ' : ''}{row.configuration}
+                  <tr key={idx} style={{ background: idx === 0 ? 'var(--accent-wash)' : 'transparent' }}>
+                    <td style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, color: idx === 0 ? 'var(--accent-primary)' : 'var(--text-primary)' }}>
+                      {idx === 0 ? '★ ' : ''}{row.configuration}
                     </td>
                     <td>
                       <span style={{ 
                         fontFamily: 'var(--font-mono)', 
                         fontWeight: 700,
-                        color: row.mean_expected_behavior_pct >= 90 ? 'var(--emerald-bright)' : (row.mean_expected_behavior_pct >= 70 ? 'var(--amber-primary)' : 'var(--rose-primary)')
+                        color: row.mean_expected_behavior_pct >= 90 ? 'var(--pass-green)' : (row.mean_expected_behavior_pct >= 70 ? 'var(--amber-primary)' : 'var(--fail-red)')
                       }}>
                         {row.mean_expected_behavior_pct}%
                       </span>
@@ -74,12 +74,12 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
                       <span style={{ 
                         fontFamily: 'var(--font-mono)', 
                         fontWeight: 700,
-                        color: row.mean_HRS <= 0.1 ? 'var(--emerald-bright)' : (row.mean_HRS <= 0.3 ? 'var(--amber-primary)' : 'var(--rose-primary)')
+                        color: row.mean_HRS <= 0.1 ? 'var(--pass-green)' : (row.mean_HRS <= 0.3 ? 'var(--amber-primary)' : 'var(--fail-red)')
                       }}>
                         {row.mean_HRS.toFixed(4)}
                       </span>
                     </td>
-                    <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+                    <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                       {row.mean_latency_ms} ms
                     </td>
                     <td style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
@@ -96,23 +96,23 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
         {data.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
             {/* Chart 1: Safe Behavior Score */}
-            <div style={{ background: 'rgba(7, 11, 20, 0.7)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <BarChart2 size={16} color="#10B981" />
+            <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <BarChart2 size={16} color="var(--pass-green)" />
                 <span>Expected Safe-Behavior Score (%) — Higher is Better</span>
               </div>
 
               {data.map((row) => (
                 <div key={row.configuration} style={{ marginBottom: 12 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: 4 }}>
-                    <span style={{ color: '#E2E8F0', fontWeight: 500 }}>{row.configuration}</span>
-                    <strong style={{ color: 'var(--emerald-bright)', fontFamily: 'var(--font-mono)' }}>{row.mean_expected_behavior_pct}%</strong>
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{row.configuration}</span>
+                    <strong style={{ color: 'var(--pass-green)', fontFamily: 'var(--font-mono)' }}>{row.mean_expected_behavior_pct}%</strong>
                   </div>
-                  <div style={{ height: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: 8, background: '#E4E4DD', borderRadius: 4, overflow: 'hidden' }}>
                     <div style={{ 
                       height: '100%', 
                       width: `${row.mean_expected_behavior_pct}%`, 
-                      background: row.configuration === 'Full 5in1' ? 'var(--cyan-primary)' : 'var(--emerald-primary)',
+                      background: row.configuration === 'Full 5in1' ? 'var(--accent-primary)' : 'var(--pass-green)',
                       borderRadius: 4
                     }} />
                   </div>
@@ -121,23 +121,23 @@ export default function AblationMatrix({ isConnected }: AblationMatrixProps) {
             </div>
 
             {/* Chart 2: Hallucination Risk Score */}
-            <div style={{ background: 'rgba(7, 11, 20, 0.7)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <ArrowDownRight size={16} color="#EF4444" />
+            <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <ArrowDownRight size={16} color="var(--fail-red)" />
                 <span>Hallucination Risk Score (HRS) — Lower is Better</span>
               </div>
 
               {data.map((row) => (
                 <div key={row.configuration} style={{ marginBottom: 12 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: 4 }}>
-                    <span style={{ color: '#E2E8F0', fontWeight: 500 }}>{row.configuration}</span>
-                    <strong style={{ color: 'var(--rose-primary)', fontFamily: 'var(--font-mono)' }}>{row.mean_HRS.toFixed(4)}</strong>
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{row.configuration}</span>
+                    <strong style={{ color: 'var(--fail-red)', fontFamily: 'var(--font-mono)' }}>{row.mean_HRS.toFixed(4)}</strong>
                   </div>
-                  <div style={{ height: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: 8, background: '#E4E4DD', borderRadius: 4, overflow: 'hidden' }}>
                     <div style={{ 
                       height: '100%', 
                       width: `${Math.min(row.mean_HRS * 180, 100)}%`, 
-                      background: row.configuration === 'Full 5in1' ? 'var(--emerald-primary)' : 'var(--rose-primary)',
+                      background: row.configuration === 'Full 5in1' ? 'var(--pass-green)' : 'var(--fail-red)',
                       borderRadius: 4
                     }} />
                   </div>

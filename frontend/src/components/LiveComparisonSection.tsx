@@ -115,10 +115,10 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
   return (
     <div className="fade-in" style={{ marginBottom: 28 }}>
       {/* 1. DIRECT COMPARISON SECTION */}
-      <div className="glass-panel" style={{ background: 'rgba(7, 11, 20, 0.85)', border: '1px solid var(--border-glow-cyan)', marginBottom: 20 }}>
+      <div className="glass-panel" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-card)', marginBottom: 20 }}>
         <div className="panel-header" style={{ marginBottom: 14 }}>
-          <h3 className="panel-title" style={{ fontSize: '1.2rem', color: '#fff' }}>
-            Direct Comparison
+          <h3 className="panel-title" style={{ fontSize: '1.2rem', color: 'var(--text-primary)' }}>
+            Comparative Audit Summary
           </h3>
           <span className="badge-tag">Query: {query}</span>
         </div>
@@ -133,31 +133,31 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
           {/* Baseline Latency */}
           <div className="comp-meta-item">
             <span className="comp-meta-label">Baseline Latency</span>
-            <span className="comp-meta-val" style={{ color: '#CBD5E1' }}>
+            <span className="comp-meta-val" style={{ color: 'var(--text-secondary)' }}>
               {baselineLatency !== undefined ? `${baselineLatency} ms` : 'N/A'}
             </span>
           </div>
 
           {/* 5in1 Latency */}
           <div className="comp-meta-item">
-            <span className="comp-meta-label">5in1 Latency</span>
-            <span className="comp-meta-val" style={{ color: 'var(--cyan-bright)' }}>
+            <span className="comp-meta-label">5in1 Pipeline Latency</span>
+            <span className="comp-meta-val" style={{ color: 'var(--accent-primary)' }}>
               {fivein1Latency !== undefined ? `${fivein1Latency} ms` : 'N/A'}
             </span>
           </div>
 
           {/* Baseline Risk */}
           <div className="comp-meta-item">
-            <span className="comp-meta-label">Baseline Risk</span>
-            <span className="comp-meta-val" style={{ color: baselineRisk !== null ? 'var(--rose-primary)' : 'var(--text-muted)' }}>
+            <span className="comp-meta-label">Baseline Risk (HRS)</span>
+            <span className="comp-meta-val" style={{ color: baselineRisk !== null ? 'var(--fail-red)' : 'var(--text-muted)' }}>
               {baselineRisk !== null ? baselineRisk.toFixed(4) : 'N/A'}
             </span>
           </div>
 
           {/* 5in1 Risk */}
           <div className="comp-meta-item">
-            <span className="comp-meta-label">5in1 Risk</span>
-            <span className="comp-meta-val" style={{ color: fivein1Risk !== null ? 'var(--emerald-bright)' : 'var(--text-muted)' }}>
+            <span className="comp-meta-label">5in1 Risk (HRS)</span>
+            <span className="comp-meta-val" style={{ color: fivein1Risk !== null ? 'var(--pass-green)' : 'var(--text-muted)' }}>
               {fivein1Risk !== null ? fivein1Risk.toFixed(4) : 'N/A'}
             </span>
           </div>
@@ -165,28 +165,28 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
           {/* Risk Reduction */}
           <div className="comp-meta-item">
             <span className="comp-meta-label">Risk Reduction</span>
-            <span className="comp-meta-val" style={{ color: riskReduction !== null ? 'var(--emerald-bright)' : 'var(--text-muted)' }}>
+            <span className="comp-meta-val" style={{ color: riskReduction !== null ? 'var(--pass-green)' : 'var(--text-muted)' }}>
               {riskReduction !== null ? `-${riskReduction.toFixed(1)}%` : 'N/A'}
             </span>
           </div>
         </div>
 
         {/* Direct Answer Comparison */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12 }}>
-          <div style={{ background: '#040711', padding: '12px 16px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(239, 68, 68, 0.25)' }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--rose-primary)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
-              Baseline Answer
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
+          <div style={{ background: '#FAF8F6', padding: '14px 18px', borderRadius: 'var(--radius-sm)', border: '1px solid #F1ECE6' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--fail-red)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
+              Unassisted Baseline Generation
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#CBD5E1', lineHeight: 1.55 }}>
+            <div style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               {without5in1Answer}
             </div>
           </div>
 
-          <div style={{ background: '#040711', padding: '12px 16px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--emerald-bright)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
-              5in1 Answer
+          <div style={{ background: '#FFFFFF', padding: '14px 18px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-card)', borderLeft: '3px solid var(--pass-green)' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--pass-green)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
+              5in1 Grounded Final Answer
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#F1F5F9', lineHeight: 1.55, fontWeight: 500 }}>
+            <div style={{ fontSize: '0.92rem', color: 'var(--text-primary)', lineHeight: 1.6, fontWeight: 500 }}>
               {with5in1FinalAnswer}
             </div>
           </div>
@@ -220,7 +220,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
           <div className="comp-details-list">
             <div className="comp-detail-row">
               <span style={{ color: 'var(--text-muted)' }}>Latency:</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#fff' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--text-primary)' }}>
                 {baselineLatency !== undefined ? `${baselineLatency} ms` : 'N/A'}
               </span>
             </div>

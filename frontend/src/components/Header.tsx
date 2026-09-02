@@ -24,45 +24,39 @@ export default function Header({
       <div className="header-top">
         <div className="brand-section">
           <div className="brand-badge-row">
-            <span className="badge-tag cyan">AI Research Capstone</span>
             <span className="badge-tag purple">Qwen3 8B 4-bit (Colab GPU)</span>
-            <span className="badge-tag">Kaggle Hotel Booking</span>
+            <span className="badge-tag">Hotel Booking</span>
           </div>
-          <h1 className="brand-title">5in1 Hotel Agent</h1>
+          <h1 className="brand-title">5 in 1 Hotel Agent</h1>
           <h2 className="brand-subtitle">A safer and more grounded Qwen3 hotel-booking agent</h2>
           <p className="brand-desc">
-            This research demonstration contrasts the unassisted Qwen3 baseline response against the complete 
-            <strong> 5in1 neurosymbolic pipeline</strong> (Graph-RAG, ToolGate, Multi-Agent Validation, Neurosymbolic Guardrails, and Agent Steering) 
+            This research demonstration contrasts the unassisted Qwen3 baseline response against the complete
+            <strong> 5in1 neurosymbolic pipeline</strong> (Graph-RAG, ToolGate, Multi-Agent Validation, Neurosymbolic Guardrails, and Agent Steering)
             running live on Google Colab GPU runtime.
           </p>
         </div>
 
-        {/* Small Status Indicator: CONNECTED or OFFLINE */}
-        <div 
-          className="status-pill" 
-          onClick={onOpenConfig} 
+        {/* Precision Hardware Status Indicator */}
+        <div
+          className="status-pill"
+          onClick={onOpenConfig}
           title="Click to view or configure Colab API connection"
-          style={{
-            borderColor: isConnected ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)',
-            background: isConnected ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)',
-            padding: '6px 12px'
-          }}
         >
           <div className={`status-dot ${isConnected ? 'online' : 'offline'}`} />
           <div className="status-text">
             {isConnected ? (
-              <strong style={{ color: 'var(--emerald-bright)', letterSpacing: '0.05em' }}>CONNECTED</strong>
+              <span style={{ color: 'var(--pass-green)' }}>API CONNECTED</span>
             ) : (
-              <strong style={{ color: 'var(--rose-bright)', letterSpacing: '0.05em' }}>OFFLINE</strong>
+              <span style={{ color: 'var(--fail-red)' }}>BACKEND OFFLINE</span>
             )}
           </div>
-          <Settings size={13} color="#94A3B8" style={{ marginLeft: 4 }} />
+          <Settings size={13} color="var(--text-muted)" style={{ marginLeft: 2 }} />
         </div>
       </div>
 
       {/* Navigation Tabs */}
       <nav className="nav-tabs">
-        <button 
+        <button
           className={`nav-tab ${activeTab === 'inspector' ? 'active' : ''}`}
           onClick={() => setActiveTab('inspector')}
         >
@@ -70,7 +64,7 @@ export default function Header({
           <span>Live Inference</span>
         </button>
 
-        <button 
+        <button
           className={`nav-tab ${activeTab === 'evaluation' ? 'active' : ''}`}
           onClick={() => setActiveTab('evaluation')}
         >
@@ -78,7 +72,7 @@ export default function Header({
           <span>Evaluation Dashboard</span>
         </button>
 
-        <button 
+        <button
           className={`nav-tab ${activeTab === 'ablation' ? 'active' : ''}`}
           onClick={() => setActiveTab('ablation')}
         >
@@ -86,7 +80,7 @@ export default function Header({
           <span>Ablation Matrix</span>
         </button>
 
-        <button 
+        <button
           className={`nav-tab ${activeTab === 'graph' ? 'active' : ''}`}
           onClick={() => setActiveTab('graph')}
         >

@@ -73,7 +73,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
     <div className="glass-panel fade-in">
       <div className="panel-header">
         <div className="panel-title">
-          <Navigation size={22} color="#06B6D4" />
+          <Navigation size={22} color="var(--accent-primary)" />
           <span>5in1 Pipeline Execution Trace</span>
         </div>
         <span className="badge-tag cyan">
@@ -92,7 +92,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">1</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <MessageSquare size={16} color="#06B6D4" />
+                <MessageSquare size={16} color="var(--accent-primary)" />
                 <span>USER QUERY</span>
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">2</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Compass size={16} color="#06B6D4" />
+                <Compass size={16} color="var(--accent-primary)" />
                 <span>INTENT ANALYSIS</span>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">3</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Network size={16} color="#06B6D4" />
+                <Network size={16} color="var(--accent-primary)" />
                 <span>GRAPH-RAG</span>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">4</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Wrench size={16} color="#06B6D4" />
+                <Wrench size={16} color="var(--accent-primary)" />
                 <span>TOOLGATE</span>
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">6</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Scale size={16} color="#06B6D4" />
+                <Scale size={16} color="var(--accent-primary)" />
                 <span>MULTI-AGENT VALIDATION</span>
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">7</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <ShieldCheck size={16} color="#06B6D4" />
+                <ShieldCheck size={16} color="var(--accent-primary)" />
                 <span>NEUROSYMBOLIC GUARDRAILS</span>
               </div>
             </div>
@@ -257,7 +257,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">8</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Navigation size={16} color="#06B6D4" />
+                <Navigation size={16} color="var(--accent-primary)" />
                 <span>STEERING</span>
               </div>
             </div>
