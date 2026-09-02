@@ -45,7 +45,7 @@ Vercel Interactive UI (Dynamic Comparative Display & Pipeline Stepper)
 ## 🚀 Quick Start
 
 ### 1. Backend (Google Colab)
-Open [`colab_backend.ipynb`](file:///Users/razel/Downloads/Project/colab_backend.ipynb) in Google Colab with **T4 GPU** runtime and click **Runtime → Run all**. Copy the public `https://*.trycloudflare.com` URL printed at Cell 7.
+Run the 5in1 Qwen3 FastAPI backend in Google Colab with **T4 GPU** runtime. Copy the generated public `https://*.trycloudflare.com` URL.
 
 ### 2. Frontend (Vercel)
 Set `NEXT_PUBLIC_API_URL=https://your-tunnel.trycloudflare.com` in your Vercel project environment variables and deploy the `frontend/` directory.

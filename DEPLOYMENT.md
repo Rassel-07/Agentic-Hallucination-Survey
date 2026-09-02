@@ -36,7 +36,7 @@ Vercel UI (Dynamic Comparative Display & Visual Trace)
 
 ### Step 1: Run the ML System in Google Colab
 1. Open [Google Colab](https://colab.research.google.com).
-2. Upload and open [`colab_backend.ipynb`](file:///Users/razel/Downloads/Project/colab_backend.ipynb).
+2. Run the 5in1 Qwen3 FastAPI backend server.
 3. Ensure a GPU runtime is selected:
    - Click **Runtime → Change runtime type**
    - Select **T4 GPU** (or A100 GPU) and save.
@@ -184,7 +184,7 @@ If the Colab runtime disconnects, times out, or is restarting:
 
 | Path | Purpose |
 |---|---|
-| [`colab_backend.ipynb`](file:///Users/razel/Downloads/Project/colab_backend.ipynb) | 1-click Google Colab notebook (GPU model loading + FastAPI daemon + Cloudflare tunnel) |
 | [`frontend/`](file:///Users/razel/Downloads/Project/frontend) | Next.js + TypeScript web application for Vercel deployment |
 | [`frontend/.env.example`](file:///Users/razel/Downloads/Project/frontend/.env.example) | Example environment variable template (`NEXT_PUBLIC_API_URL`) |
 | [`DEPLOYMENT.md`](file:///Users/razel/Downloads/Project/DEPLOYMENT.md) | This deployment and operations guide |
+| [`README.md`](file:///Users/razel/Downloads/Project/README.md) | Architecture overview and benchmark documentation |
