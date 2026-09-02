@@ -185,7 +185,6 @@ If the Colab runtime disconnects, times out, or is restarting:
 | Path | Purpose |
 |---|---|
 | [`colab_backend.ipynb`](file:///Users/razel/Downloads/Project/colab_backend.ipynb) | 1-click Google Colab notebook (GPU model loading + FastAPI daemon + Cloudflare tunnel) |
-| [`colab_server.py`](file:///Users/razel/Downloads/Project/colab_server.py) | Standalone Python server script for Colab terminal execution (`!python colab_server.py`) |
 | [`frontend/`](file:///Users/razel/Downloads/Project/frontend) | Next.js + TypeScript web application for Vercel deployment |
 | [`frontend/.env.example`](file:///Users/razel/Downloads/Project/frontend/.env.example) | Example environment variable template (`NEXT_PUBLIC_API_URL`) |
 | [`DEPLOYMENT.md`](file:///Users/razel/Downloads/Project/DEPLOYMENT.md) | This deployment and operations guide |
