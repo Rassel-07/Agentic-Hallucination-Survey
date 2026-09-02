@@ -180,11 +180,11 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
             <div className="step-title-group">
               <div className="step-number">5</div>
               <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Cpu size={16} color="#8B5CF6" />
+                <Cpu size={16} color="var(--accent-primary)" />
                 <span>QWEN3</span>
               </div>
             </div>
-            <span className="step-badge purple">RAW GENERATION</span>
+            <span className="step-badge abstain">RAW GENERATION</span>
           </div>
           <div className="step-content">
             {rawResponse || 'None'}
@@ -240,7 +240,7 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
           <div className="step-content">
             Guardrail Status: <strong>{guardrailPassed ? 'PASS' : 'FAIL'}</strong>
             {guardrailViolations.length > 0 && (
-              <div style={{ marginTop: 6, color: 'var(--rose-primary)' }}>
+              <div style={{ marginTop: 6, color: 'var(--fail-red)' }}>
                 Guardrail Violations: {guardrailViolations.join(', ')}
               </div>
             )}
@@ -279,18 +279,18 @@ export default function PipelineSection({ data }: PipelineSectionProps) {
         </div>
 
         {/* 9. FINAL ANSWER */}
-        <div className="pipeline-step" style={{ border: '1px solid var(--border-glow-emerald)', background: 'rgba(16, 185, 129, 0.04)' }}>
+        <div className="pipeline-step" style={{ border: '1px solid var(--pass-border)', background: 'var(--pass-wash)' }}>
           <div className="step-header">
             <div className="step-title-group">
-              <div className="step-number" style={{ background: 'var(--emerald-primary)', color: '#050811' }}>9</div>
-              <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--emerald-bright)' }}>
+              <div className="step-number" style={{ background: 'var(--pass-green)', color: '#FFFFFF' }}>9</div>
+              <div className="step-name" style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--pass-green)' }}>
                 <CheckCircle size={16} />
-                <span>FINAL ANSWER</span>
+                <span>FINAL GROUNDED ANSWER</span>
               </div>
             </div>
-            <span className="step-badge pass">FINAL</span>
+            <span className="step-badge pass">VERIFIED</span>
           </div>
-          <div className="step-content" style={{ color: '#F1F5F9', borderLeft: '3px solid var(--emerald-primary)' }}>
+          <div className="step-content" style={{ color: 'var(--text-primary)', background: '#FFFFFF', border: '1px solid var(--pass-border)', borderLeft: '4px solid var(--pass-green)', fontSize: '0.94rem', lineHeight: 1.65, fontWeight: 500 }}>
             {finalAnswer}
           </div>
         </div>

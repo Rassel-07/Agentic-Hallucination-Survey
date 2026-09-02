@@ -199,7 +199,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
         <div className="comp-column baseline">
           <div className="comp-header">
             <div>
-              <div className="comp-title" style={{ color: 'var(--rose-primary)' }}>
+              <div className="comp-title" style={{ color: 'var(--fail-red)' }}>
                 WITHOUT 5in1
               </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -211,10 +211,12 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
 
           {/* WITHOUT 5in1 answer */}
           <div className="comp-response-box" style={{ marginBottom: 14 }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-              Answer:
+            <div style={{ fontSize: '0.74rem', color: 'var(--fail-red)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 8 }}>
+              Baseline Answer:
             </div>
-            {without5in1Answer}
+            <div style={{ color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.65 }}>
+              {without5in1Answer}
+            </div>
           </div>
 
           <div className="comp-details-list">
@@ -228,13 +230,13 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
             <div className="comp-detail-row" style={{ alignItems: 'flex-start', flexDirection: 'column', gap: 6 }}>
               <span style={{ color: 'var(--text-muted)' }}>Guardrail Violations:</span>
               {baselineViolations.length > 0 ? (
-                <ul style={{ paddingLeft: 18, color: 'var(--rose-bright)', fontSize: '0.82rem' }}>
+                <ul style={{ paddingLeft: 18, color: 'var(--fail-red)', fontSize: '0.82rem' }}>
                   {baselineViolations.map((v, i) => (
                     <li key={i}>{v}</li>
                   ))}
                 </ul>
               ) : (
-                <span style={{ color: 'var(--emerald-bright)', fontSize: '0.82rem' }}>None</span>
+                <span style={{ color: 'var(--pass-green)', fontSize: '0.82rem', fontWeight: 600 }}>None</span>
               )}
             </div>
           </div>
@@ -244,7 +246,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
         <div className="comp-column fivein1">
           <div className="comp-header">
             <div>
-              <div className="comp-title" style={{ color: 'var(--emerald-bright)' }}>
+              <div className="comp-title" style={{ color: 'var(--pass-green)' }}>
                 WITH 5in1
               </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -258,11 +260,13 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
           </div>
 
           {/* WITH 5in1 final answer */}
-          <div className="comp-response-box" style={{ borderLeft: '3px solid var(--emerald-primary)', marginBottom: 14 }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--emerald-bright)', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-              Final Answer:
+          <div className="comp-response-box" style={{ borderLeft: '4px solid var(--pass-green)', background: '#FFFFFF', marginBottom: 14 }}>
+            <div style={{ fontSize: '0.74rem', color: 'var(--pass-green)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.06em', marginBottom: 8 }}>
+              5in1 Grounded Final Answer:
             </div>
-            {with5in1FinalAnswer}
+            <div style={{ color: 'var(--text-primary)', fontSize: '0.96rem', lineHeight: 1.65, fontWeight: 500 }}>
+              {with5in1FinalAnswer}
+            </div>
           </div>
 
           <div className="comp-details-list">
@@ -277,7 +281,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
             {/* tools */}
             <div className="comp-detail-row">
               <span style={{ color: 'var(--text-muted)' }}>Tools:</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: tools.length ? 'var(--cyan-bright)' : 'var(--text-dim)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: tools.length ? 'var(--accent-primary)' : 'var(--text-muted)' }}>
                 {tools.length ? tools.join(', ') : 'None'}
               </span>
             </div>
@@ -298,7 +302,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
             {/* validation issues */}
             <div className="comp-detail-row">
               <span style={{ color: 'var(--text-muted)' }}>Validation Issues:</span>
-              <span style={{ fontSize: '0.8rem', color: validationIssues.length ? 'var(--rose-primary)' : 'var(--emerald-bright)' }}>
+              <span style={{ fontSize: '0.8rem', color: validationIssues.length ? 'var(--fail-red)' : 'var(--pass-green)', fontWeight: 600 }}>
                 {validationIssues.length ? validationIssues.join(', ') : 'None'}
               </span>
             </div>
@@ -309,7 +313,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 {renderGuardrailBadge(guardrailStatus)}
                 {guardrailViolations.length > 0 && (
-                  <span style={{ color: 'var(--rose-primary)', fontSize: '0.78rem' }}>
+                  <span style={{ color: 'var(--fail-red)', fontSize: '0.78rem' }}>
                     ({guardrailViolations.join(', ')})
                   </span>
                 )}
@@ -330,7 +334,7 @@ export default function LiveComparisonSection({ data }: LiveComparisonSectionPro
             {/* latency */}
             <div className="comp-detail-row">
               <span style={{ color: 'var(--text-muted)' }}>Latency:</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--cyan-bright)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--accent-primary)' }}>
                 {fivein1Latency !== undefined ? `${fivein1Latency} ms` : 'N/A'}
               </span>
             </div>

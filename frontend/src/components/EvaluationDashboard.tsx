@@ -199,9 +199,9 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <div className="kpi-card">
               <div className="kpi-label">
                 <span>Avg Latency (Without)</span>
-                <Clock size={16} color="#94A3B8" />
+                <Clock size={16} color="var(--text-muted)" />
               </div>
-              <div className="kpi-value" style={{ fontSize: '1.5rem', color: '#CBD5E1' }}>
+              <div className="kpi-value" style={{ fontSize: '1.5rem', color: 'var(--text-primary)' }}>
                 {summaryData.avg_latency_without_ms.toFixed(1)} ms
               </div>
               <div className="kpi-sub">Single Forward Pass</div>
@@ -211,9 +211,9 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <div className="kpi-card">
               <div className="kpi-label">
                 <span>Avg Latency (With)</span>
-                <Clock size={16} color="var(--cyan-bright)" />
+                <Clock size={16} color="var(--accent-primary)" />
               </div>
-              <div className="kpi-value" style={{ fontSize: '1.5rem', color: 'var(--cyan-bright)' }}>
+              <div className="kpi-value" style={{ fontSize: '1.5rem', color: 'var(--accent-primary)' }}>
                 {summaryData.avg_latency_with_ms.toFixed(1)} ms
               </div>
               <div className="kpi-sub">5 Protective Layers Overhead</div>
@@ -229,7 +229,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
           <div className="chart-card">
             <div className="chart-title-row">
               <div className="chart-title">
-                <ArrowDownRight size={20} color="#EF4444" />
+                <ArrowDownRight size={20} color="var(--fail-red)" />
                 <span>2. Hallucination Risk Score Comparison</span>
               </div>
               <span className="badge-tag cyan">Lower is Better</span>
@@ -243,8 +243,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               {/* Baseline Bar */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0', fontWeight: 600 }}>WITHOUT 5in1 (Parametric Qwen3)</span>
-                  <strong style={{ color: 'var(--rose-primary)', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>WITHOUT 5in1 (Parametric Qwen3)</span>
+                  <strong style={{ color: 'var(--fail-red)', fontFamily: 'var(--font-mono)' }}>
                     HRS: {summaryData.avg_HRS_without_5in1.toFixed(4)}
                   </strong>
                 </div>
@@ -259,8 +259,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               {/* 5in1 Bar */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0', fontWeight: 600 }}>WITH 5in1 (Protected Pipeline)</span>
-                  <strong style={{ color: 'var(--emerald-bright)', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>WITH 5in1 (Protected Pipeline)</span>
+                  <strong style={{ color: 'var(--pass-green)', fontFamily: 'var(--font-mono)' }}>
                     HRS: {summaryData.avg_HRS_with_5in1.toFixed(4)}
                   </strong>
                 </div>
@@ -310,8 +310,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               {/* Baseline Success */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0', fontWeight: 600 }}>Baseline Expected Behaviour</span>
-                  <strong style={{ color: 'var(--rose-primary)', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Baseline Expected Behaviour</span>
+                  <strong style={{ color: 'var(--fail-red)', fontFamily: 'var(--font-mono)' }}>
                     {summaryData.baseline_expected_behavior_pct.toFixed(1)}%
                   </strong>
                 </div>
@@ -326,8 +326,8 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               {/* 5in1 Success */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0', fontWeight: 600 }}>5in1 Expected Behaviour</span>
-                  <strong style={{ color: 'var(--emerald-bright)', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>5in1 Expected Behaviour</span>
+                  <strong style={{ color: 'var(--pass-green)', fontFamily: 'var(--font-mono)' }}>
                     {summaryData.with5in1_expected_behavior_pct.toFixed(1)}%
                   </strong>
                 </div>
@@ -343,11 +343,11 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <div style={{
               marginTop: 20,
               padding: '12px 16px',
-              background: 'rgba(6, 182, 212, 0.08)',
-              border: '1px solid rgba(6, 182, 212, 0.25)',
+              background: 'var(--accent-wash)',
+              border: '1px solid var(--accent-border)',
               borderRadius: 'var(--radius-sm)',
               fontSize: '0.85rem',
-              color: 'var(--cyan-bright)',
+              color: 'var(--accent-primary)',
               display: 'flex',
               alignItems: 'center',
               gap: 8
@@ -439,10 +439,10 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
         <div className="glass-panel" style={{ marginBottom: 28 }}>
           <div className="panel-header">
             <div className="panel-title">
-              <Clock size={22} color="#8B5CF6" />
+              <Clock size={22} color="var(--accent-primary)" />
               <span>5. Latency & Computational Tradeoff</span>
             </div>
-            <span className="badge-tag purple">Transparency in Multi-Agent Overhead</span>
+            <span className="badge-tag">Multi-Agent Overhead</span>
           </div>
 
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 20 }}>
@@ -454,28 +454,28 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
               <div style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0' }}>WITHOUT 5in1 (Parametric Generation)</span>
-                  <strong style={{ color: '#94A3B8', fontFamily: 'var(--font-mono)' }}>{summaryData.avg_latency_without_ms.toFixed(1)} ms</strong>
+                  <span style={{ color: 'var(--text-primary)' }}>WITHOUT 5in1 (Parametric Generation)</span>
+                  <strong style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>{summaryData.avg_latency_without_ms.toFixed(1)} ms</strong>
                 </div>
                 <div className="bar-track" style={{ height: 12 }}>
-                  <div className="bar-fill" style={{ width: `${baselineLatencyWidth}%`, background: '#64748B' }} />
+                  <div className="bar-fill" style={{ width: `${baselineLatencyWidth}%`, background: '#94A3B8' }} />
                 </div>
               </div>
 
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                  <span style={{ color: '#E2E8F0' }}>WITH 5in1 (5-Layer Safety Pipeline)</span>
-                  <strong style={{ color: 'var(--purple-bright)', fontFamily: 'var(--font-mono)' }}>{summaryData.avg_latency_with_ms.toFixed(1)} ms</strong>
+                  <span style={{ color: 'var(--text-primary)' }}>WITH 5in1 (5-Layer Safety Pipeline)</span>
+                  <strong style={{ color: 'var(--accent-primary)', fontFamily: 'var(--font-mono)' }}>{summaryData.avg_latency_with_ms.toFixed(1)} ms</strong>
                 </div>
                 <div className="bar-track" style={{ height: 12 }}>
-                  <div className="bar-fill purple" style={{ width: `${with5in1LatencyWidth}%` }} />
+                  <div className="bar-fill cyan" style={{ width: `${with5in1LatencyWidth}%`, background: 'var(--accent-primary)' }} />
                 </div>
               </div>
             </div>
 
             {/* Tradeoff Explanation */}
             <div className="tradeoff-banner" style={{ margin: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, color: 'var(--purple-bright)', fontWeight: 700 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, color: 'var(--accent-primary)', fontWeight: 700 }}>
                 <Info size={18} />
                 <span>The Neurosymbolic Tradeoff</span>
               </div>
@@ -488,7 +488,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
       )}
 
       {/* SECTION 6: ABLATION STUDY ("Why each 5in1 layer matters") */}
-      <div className="glass-panel" style={{ marginBottom: 28, border: '1px solid var(--border-glow-cyan)' }}>
+      <div className="glass-panel" style={{ marginBottom: 28, border: '1px solid var(--border-card)' }}>
         <div className="panel-header">
           <div className="panel-title">
             <Layers size={22} color="var(--accent-primary)" />
@@ -516,15 +516,15 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               </thead>
               <tbody>
                 {ablationData.map((row, idx) => (
-                  <tr key={idx} style={{ background: idx === 0 ? 'rgba(6, 182, 212, 0.05)' : 'transparent' }}>
-                    <td style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: idx === 0 ? 'var(--cyan-bright)' : '#fff' }}>
-                      {idx === 0 ? '🌟 ' : ''}{row.configuration}
+                  <tr key={idx} style={{ background: idx === 0 ? 'var(--accent-wash)' : 'transparent' }}>
+                    <td style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, color: idx === 0 ? 'var(--accent-primary)' : 'var(--text-primary)' }}>
+                      {idx === 0 ? '★ ' : ''}{row.configuration}
                     </td>
                     <td>
                       <span style={{ 
                         fontFamily: 'var(--font-mono)', 
                         fontWeight: 700,
-                        color: row.mean_expected_behavior_pct >= 90 ? 'var(--emerald-bright)' : (row.mean_expected_behavior_pct >= 70 ? 'var(--amber-primary)' : 'var(--rose-primary)')
+                        color: row.mean_expected_behavior_pct >= 90 ? 'var(--pass-green)' : (row.mean_expected_behavior_pct >= 70 ? 'var(--amber-primary)' : 'var(--fail-red)')
                       }}>
                         {row.mean_expected_behavior_pct.toFixed(1)}%
                       </span>
@@ -533,15 +533,15 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
                       <span style={{ 
                         fontFamily: 'var(--font-mono)', 
                         fontWeight: 700,
-                        color: row.mean_HRS <= 0.1 ? 'var(--emerald-bright)' : (row.mean_HRS <= 0.3 ? 'var(--amber-primary)' : 'var(--rose-primary)')
+                        color: row.mean_HRS <= 0.1 ? 'var(--pass-green)' : (row.mean_HRS <= 0.3 ? 'var(--amber-primary)' : 'var(--fail-red)')
                       }}>
                         {row.mean_HRS.toFixed(4)}
                       </span>
                     </td>
-                    <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+                    <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                       {typeof row.mean_latency_ms === 'number' ? row.mean_latency_ms.toFixed(1) : row.mean_latency_ms} ms
                     </td>
-                    <td style={{ fontSize: '0.82rem', color: idx === 0 ? 'var(--emerald-bright)' : 'var(--text-secondary)' }}>
+                    <td style={{ fontSize: '0.82rem', color: idx === 0 ? 'var(--pass-green)' : 'var(--text-secondary)' }}>
                       {row.description}
                     </td>
                   </tr>
@@ -557,21 +557,21 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             {/* Chart: Safe Behavior Impact */}
             <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
               <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <CheckCircle2 size={16} color="#10B981" />
+                <CheckCircle2 size={16} color="var(--pass-green)" />
                 <span>Safe-Behavior Score Drop (% — Higher is Better)</span>
               </div>
               {ablationData.map((row) => (
                 <div key={row.configuration} style={{ marginBottom: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: 3 }}>
-                    <span style={{ color: '#E2E8F0' }}>{row.configuration}</span>
-                    <strong style={{ color: row.configuration === 'Full 5in1' ? 'var(--emerald-bright)' : '#CBD5E1', fontFamily: 'var(--font-mono)' }}>
+                    <span style={{ color: 'var(--text-primary)' }}>{row.configuration}</span>
+                    <strong style={{ color: row.configuration === 'Full 5in1' ? 'var(--pass-green)' : 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                       {row.mean_expected_behavior_pct.toFixed(1)}%
                     </strong>
                   </div>
                   <div className="bar-track" style={{ height: 7 }}>
                     <div 
-                      className={`bar-fill ${row.configuration === 'Full 5in1' ? 'emerald' : 'cyan'}`} 
-                      style={{ width: `${Math.min(row.mean_expected_behavior_pct, 100)}%` }} 
+                      className="bar-fill" 
+                      style={{ width: `${Math.min(row.mean_expected_behavior_pct, 100)}%`, background: row.configuration === 'Full 5in1' ? 'var(--pass-green)' : 'var(--accent-primary)' }} 
                     />
                   </div>
                 </div>
@@ -581,21 +581,21 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             {/* Chart: HRS Risk Climb */}
             <div style={{ background: 'var(--bg-subtle)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
               <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <ArrowDownRight size={16} color="#EF4444" />
+                <ArrowDownRight size={16} color="var(--fail-red)" />
                 <span>Hallucination Risk Score Climb (HRS — Lower is Better)</span>
               </div>
               {ablationData.map((row) => (
                 <div key={row.configuration} style={{ marginBottom: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: 3 }}>
-                    <span style={{ color: '#E2E8F0' }}>{row.configuration}</span>
-                    <strong style={{ color: row.configuration === 'Full 5in1' ? 'var(--emerald-bright)' : 'var(--rose-primary)', fontFamily: 'var(--font-mono)' }}>
+                    <span style={{ color: 'var(--text-primary)' }}>{row.configuration}</span>
+                    <strong style={{ color: row.configuration === 'Full 5in1' ? 'var(--pass-green)' : 'var(--fail-red)', fontFamily: 'var(--font-mono)' }}>
                       {row.mean_HRS.toFixed(4)}
                     </strong>
                   </div>
                   <div className="bar-track" style={{ height: 7 }}>
                     <div 
-                      className={`bar-fill ${row.configuration === 'Full 5in1' ? 'emerald' : 'rose'}`} 
-                      style={{ width: `${Math.min(row.mean_HRS * 180, 100)}%` }} 
+                      className="bar-fill" 
+                      style={{ width: `${Math.min(row.mean_HRS * 180, 100)}%`, background: row.configuration === 'Full 5in1' ? 'var(--pass-green)' : 'var(--fail-red)' }} 
                     />
                   </div>
                 </div>
@@ -619,11 +619,11 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 style={{
-                  background: activeCategory === cat ? 'var(--cyan-primary)' : 'rgba(255, 255, 255, 0.04)',
-                  color: activeCategory === cat ? '#fff' : 'var(--text-secondary)',
-                  border: '1px solid var(--border-subtle)',
+                  background: activeCategory === cat ? 'var(--text-primary)' : 'var(--bg-subtle)',
+                  color: activeCategory === cat ? '#FFFFFF' : 'var(--text-secondary)',
+                  border: `1px solid ${activeCategory === cat ? 'var(--text-primary)' : 'var(--border-card)'}`,
                   borderRadius: 'var(--radius-sm)',
-                  padding: '4px 10px',
+                  padding: '5px 12px',
                   fontSize: '0.78rem',
                   fontWeight: 600,
                   cursor: 'pointer',
@@ -654,7 +654,7 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
             <tbody>
               {filteredItems.map((item) => (
                 <tr key={item.id}>
-                  <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--cyan-bright)' }}>{item.id}</td>
+                  <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--accent-primary)' }}>{item.id}</td>
                   <td>
                     <span className={`chip-cat ${item.category}`}>
                       {item.category}
@@ -663,10 +663,10 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
                   <td style={{ fontWeight: 500, maxWidth: '280px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {item.query}
                   </td>
-                  <td style={{ color: 'var(--rose-primary)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                  <td style={{ color: 'var(--fail-red)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
                     {item.baseline_HRS.toFixed(3)}
                   </td>
-                  <td style={{ color: 'var(--emerald-bright)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                  <td style={{ color: 'var(--pass-green)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
                     {item.with5in1_HRS.toFixed(3)}
                   </td>
                   <td>
@@ -712,27 +712,27 @@ export default function EvaluationDashboard({ isConnected }: EvaluationDashboard
               </div>
               <button 
                 onClick={() => setSelectedItem(null)}
-                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1.1rem' }}
               >
                 ✕
               </button>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-              <div style={{ background: '#070B14', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--rose-primary)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>
+              <div style={{ background: '#FAF8F6', padding: '14px', borderRadius: 'var(--radius-sm)', border: '1px solid #F1ECE6' }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--fail-red)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
                   WITHOUT 5in1 Response (HRS: {selectedItem.baseline_HRS.toFixed(3)})
                 </div>
-                <div style={{ fontSize: '0.85rem', color: '#CBD5E1', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: 1.6 }}>
                   {selectedItem.baseline_response || 'Parametric baseline output.'}
                 </div>
               </div>
 
-              <div style={{ background: '#070B14', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--emerald-bright)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>
+              <div style={{ background: '#FFFFFF', padding: '14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-card)', borderLeft: '3px solid var(--pass-green)' }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--pass-green)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
                   WITH 5in1 Response (HRS: {selectedItem.with5in1_HRS.toFixed(3)})
                 </div>
-                <div style={{ fontSize: '0.85rem', color: '#CBD5E1', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: 1.6, fontWeight: 500 }}>
                   {selectedItem.with5in1_response || 'Protected grounded output.'}
                 </div>
               </div>
