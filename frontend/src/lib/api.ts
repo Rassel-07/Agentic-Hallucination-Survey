@@ -7,25 +7,61 @@ import {
   AblationConfig 
 } from '@/types';
 
-// The frontend communicates ONLY with the external Google Colab FastAPI server via NEXT_PUBLIC_API_URL
-const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+// The frontend communicates with the external Google Colab FastAPI server
+const ENV_API_URL = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
 const STORAGE_KEY = '5in1_colab_api_url';
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
-export function getBackendUrl(): string {
-  if (typeof window !== 'undefined') {
-    const userOverride = localStorage.getItem(STORAGE_KEY);
-    if (userOverride && userOverride.trim()) {
-      return userOverride.trim().replace(/\/+$/, '');
-    }
-  }
-  return ENV_API_URL.trim().replace(/\/+$/, '');
+/**
+ * Returns the raw environment variable (if defined)
+ */
+export function getEnvUrl(): string {
+  return ENV_API_URL;
 }
 
-export function setBackendUrl(url: string): void {
+/**
+ * Resolves the backend API URL:
+ * 1. Checks environment variable (NEXT_PUBLIC_API_URL from Vercel / .env) FIRST.
+ * 2. If the environment variable is NOT set, falls back to the URL entered directly by the user in the frontend (localStorage).
+ */
+export function getBackendUrl(): string {
+  // 1. Check env first
+  if (ENV_API_URL.length > 0) {
+    // Check if the user explicitly provided a manual override in the frontend modal
+    if (typeof window !== 'undefined') {
+      const manualOverride = localStorage.getItem('5in1_manual_override');
+      if (manualOverride && manualOverride.trim().length > 0) {
+        return manualOverride.trim().replace(/\/+$/, '');
+      }
+    }
+    return ENV_API_URL;
+  }
+
+  // 2. If env is not there, check URL entered directly in frontend
+  if (typeof window !== 'undefined') {
+    const userEntered = localStorage.getItem(STORAGE_KEY);
+    if (userEntered && userEntered.trim().length > 0) {
+      return userEntered.trim().replace(/\/+$/, '');
+    }
+  }
+
+  return '';
+}
+
+export function setBackendUrl(url: string, asManualOverride: boolean = false): void {
   if (typeof window === 'undefined') return;
   const cleanUrl = url.trim().replace(/\/+$/, '');
-  localStorage.setItem(STORAGE_KEY, cleanUrl);
+  if (asManualOverride) {
+    localStorage.setItem('5in1_manual_override', cleanUrl);
+  } else {
+    localStorage.setItem(STORAGE_KEY, cleanUrl);
+  }
+}
+
+export function clearBackendUrlOverride(): void {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem('5in1_manual_override');
 }
 
 // 1. GET ${NEXT_PUBLIC_API_URL}/health
