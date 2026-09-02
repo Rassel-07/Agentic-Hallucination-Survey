@@ -31,7 +31,7 @@ export default function Header({
           <h2 className="brand-subtitle">A safer and more grounded Qwen3 hotel-booking agent</h2>
           <p className="brand-desc">
             This demonstration contrasts the unassisted Qwen3 baseline response against the complete
-            <strong> 5in1 neurosymbolic pipeline</strong> (Graph-RAG, ToolGate, Multi-Agent Validation, Neurosymbolic Guardrails, and Agent Steering)
+            <strong> 5 in 1 neurosymbolic pipeline</strong> (Graph-RAG, ToolGate, Multi-Agent Validation, Neurosymbolic Guardrails, and Agent Steering)
             running live on Google Colab GPU runtime.
           </p>
         </div>
